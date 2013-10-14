@@ -1,31 +1,36 @@
-<h1>Listing apps</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Rating</th>
-    <th>Ratings</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @apps.each do |app| %>
-  <tr>
-    <td><%= app.name %></td>
-    <td><%= app.description %></td>
-    <td><%= app.rating %></td>
-    <td><%= app.ratings %></td>
-    <td><%= app.user_id %></td>
-    <td><%= link_to 'Show', app %></td>
-    <td><%= link_to 'Edit', edit_app_path(app) %></td>
-    <td><%= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = App -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "USC Apps!" %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:rating) %></th>
+      <th><%= model_class.human_attribute_name(:author) %></th>
+      <th><%= model_class.human_attribute_name(:category) %></th>
+      <th><%= "Posted on" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr>
+        <td><%= link_to app.name, app %></td>
+        <td><%= app.description %></td>
+        <td><%= app.rating %></td>
+        <td><%= app.ratings %></td>
+        <td><%= app.user_id %></td>
+        <td><%= (app.created_at).to_s[0,10] %></td>
+        <td>
+          <%= link_to t('.edit', :default => "Edit!"),
+                      edit_app_path(app), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New App', new_app_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_app_path,
+            :class => 'btn btn-primary' %>
