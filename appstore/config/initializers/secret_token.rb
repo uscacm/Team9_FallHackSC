@@ -1,12 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
-# Your secret key is used for verifying the integrity of signed cookies.
+# Your secret key for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
-
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-# You can use `rake secret` to generate a secure secret key.
-
-# Make sure your secret_key_base is kept private
-# if you're sharing your code publicly.
-Appstore::Application.config.secret_key_base = '7e72c516f90bc2f7d3a6142b38bbf47192ff1a0b0a9988b1ff6247270d224e0edf92a0cedfa4e99f85f116cc5f9e6288b193e03a55963351705ff474d308262e'
+Appstore::Application.config.secret_token = 'f781461c387ab17b4d5a72595b4bc5168a7ca8466ee087fabb43d397f184ed6cec60b207bfe444b20634ed3dfb2e539b2036e6131f988dffc6cff2d796dce9aa'
